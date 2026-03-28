@@ -1,3 +1,4 @@
+
 cty = [
     [1, 0, 2, 0, 1],  
     [0, 9, 2, 1, 3],  
@@ -10,19 +11,12 @@ cs = 0
 hos = 0
 ger = 0
 ard = 0
-nd = 0
 
-tmg = 0
-tmi = 0
-tmh = 0 # temporari pra hosp
+nd = 0
 tmp = 0 # pra ve o nmb anterior
 hp = 0 # hospital em prerigo
 
 for i in list(range(len(cty))):
-    if tmi == 5:
-        tmh = 0
-        tmg = 0
-        tmi = 0
     for n in list(range(len(cty[i]))):
         if cty[i][n]== 1:
             cs+=1
@@ -39,9 +33,11 @@ for i in list(range(len(cty))):
                     if cty[i-1][n]==9:
                         hp+=1
         if cty[i][n] == 3:
-            tmg==1
             ger+=1
             print(f"linha {i+1} com energia")
+            for h in cty[i]:
+                if h==2:
+                    print(f"Hospital em {i+1,h+1} com energia")
         if cty[i][n] == 9:
             ard+=1
         else:
@@ -49,9 +45,6 @@ for i in list(range(len(cty))):
         if tmp<hp:
             print(f"Hospital em {i+1,n+1} em perigo")
         tmp = hp
-    tmi+=1
-    if tmh==1 and tmg==1:
-        print(f"Hospital linha {i+1} com energia")
 
 print(" ")
 print(f"Casas: {cs}  |  Hospitais: {hos}  |  Geradores: {ger}  |  Áreas destruídas: {ard}")
